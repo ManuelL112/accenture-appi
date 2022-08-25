@@ -1,0 +1,23 @@
+service: mutual-zonaser-subdomain # Id of the service
+env: flex       # Flex environment
+runtime: custom   # Java runtime
+
+resources:
+  cpu: 1
+  memory_gb: 2
+  disk_size_gb: 10
+
+#endpoints_api_service:
+#  name: gcp-mutualser-zonaser-qa.appspot.com
+#  rollout_strategy: managed
+
+network:
+  name: projects/gcp-mutualser-networking/global/networks/vpc-dev
+  subnetwork_name: vpc-dev
+
+manual_scaling:
+  instances: 1
+
+env_variables:
+  PROFILER_ENABLE: true
+  JAVA_USER_OPTS: '-Duser.timezone=America/Bogota'
